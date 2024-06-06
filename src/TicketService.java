@@ -1,6 +1,8 @@
 import java.time.Instant;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class TicketService {
     private Map<String, Ticket> tickets;
@@ -16,5 +18,16 @@ public class TicketService {
 
     public Ticket getTicketById(String id) {
         return tickets.get(id);
+    }
+
+    public List<Ticket> getTicketsByStadiumSector(char stadiumSector) {
+        return tickets.values().stream()
+                .filter(ticket -> ticket.getStadiumSector() == stadiumSector)
+                .collect(Collectors.toList());
+    }
+
+    public static void main(String[] args) {
+        TicketService ticketService = new TicketService();
+        System.out.println("Tickets in sector A: " + ticketService.getTicketsByStadiumSector('A'));
     }
 }
