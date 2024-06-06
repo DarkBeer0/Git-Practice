@@ -13,4 +13,8 @@ public class TicketService {
             tickets.put(id, ticket);
         }
     }
+
+    public Ticket getTicketById(String id) {
+        return tickets.get(id);
+    }
 }
