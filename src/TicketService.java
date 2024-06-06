@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TicketService {
-    private Map<String, Ticket> tickets;
+    private Map<String, Ticket> tickets; //comment for merge-conflict
 
     public TicketService() {
         tickets = new HashMap<>();
