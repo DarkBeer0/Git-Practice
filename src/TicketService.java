@@ -1,15 +1,16 @@
 import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TicketService {
-    public static void main(String[] args) {
-        Ticket emptyTicket = new Ticket();
-        System.out.println("Empty Ticket: " + emptyTicket);
+    private Map<String, Ticket> tickets;
 
-        TicketPrice fullTicketPrice = new TicketPrice(150, 0);
-        Ticket fullTicket = new Ticket("AB12", "BigHall", 123, Instant.now().getEpochSecond(), true, 'B', 5.5, fullTicketPrice);
-        System.out.println("Full Ticket: " + fullTicket);
-
-        Ticket limitedTicket = new Ticket("SmallHall", 456, Instant.now().getEpochSecond());
-        System.out.println("Limited Ticket: " + limitedTicket);
+    public TicketService() {
+        tickets = new HashMap<>();
+        for (int i = 1; i <= 10; i++) {
+            String id = String.format("%04d", i);
+            Ticket ticket = new Ticket(id, "Hall" + (i % 3 + 1), 100 + i, System.currentTimeMillis(), false, (char)('A' + i % 3), 5.0, new TicketPrice(100.0, 10.0));
+            tickets.put(id, ticket);
+        }
     }
 }
